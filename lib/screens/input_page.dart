@@ -1,8 +1,10 @@
+import 'package:bmi_calculator_flutter/calculator_brain.dart';
+import 'package:bmi_calculator_flutter/components/bottom_button.dart';
 import 'package:bmi_calculator_flutter/constants.dart';
-import 'package:bmi_calculator_flutter/icon_content.dart';
-import 'package:bmi_calculator_flutter/result_page.dart';
-import 'package:bmi_calculator_flutter/reusable_card.dart';
-import 'package:bmi_calculator_flutter/round_icon_button.dart';
+import 'package:bmi_calculator_flutter/components/icon_content.dart';
+import 'package:bmi_calculator_flutter/screens/result_page.dart';
+import 'package:bmi_calculator_flutter/components/reusable_card.dart';
+import 'package:bmi_calculator_flutter/components/round_icon_button.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -192,27 +194,23 @@ class _InputPageState extends State<InputPage> {
               ],
             ),
           ),
-          GestureDetector(
-            onTap: () {
+          BottomButton(
+            text: 'CALCULER',
+            pressHandler: () {
+              CalculatorBrain calculatorBrain =
+              CalculatorBrain(initialHeight, initialWeight);
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => const ResultPage(),
+                  builder: (context) =>
+                      ResultPage(
+                        bmiResult: calculatorBrain.calculateBMI(),
+                        resultText: calculatorBrain.getResult(),
+                        interpretation: calculatorBrain.getInterpretation(),
+                      ),
                 ),
               );
             },
-            child: Container(
-              color: const Color(0xFFEB1555),
-              height: 80.0,
-              width: double.infinity,
-              margin: const EdgeInsets.only(top: 10.0),
-              child: const Center(
-                child: Text(
-                  'CALCULER',
-                  style: kLargeButtonTextStyle,
-                ),
-              ),
-            ),
           )
         ],
       ),
