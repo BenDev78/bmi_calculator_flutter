@@ -11,3 +11,8 @@ const TextStyle kHeightSliderTextStyle = TextStyle(
   fontSize: 50.0,
   fontWeight: FontWeight.w900,
 );
+const TextStyle kLargeButtonTextStyle = TextStyle(
+  color: Colors.white,
+  fontSize: 35.0,
+  fontWeight: FontWeight.bold,
+);

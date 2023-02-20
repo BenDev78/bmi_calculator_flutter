@@ -1,5 +1,6 @@
 import 'package:bmi_calculator_flutter/constants.dart';
 import 'package:bmi_calculator_flutter/icon_content.dart';
+import 'package:bmi_calculator_flutter/result_page.dart';
 import 'package:bmi_calculator_flutter/reusable_card.dart';
 import 'package:bmi_calculator_flutter/round_icon_button.dart';
 import 'package:flutter/material.dart';
@@ -19,8 +20,7 @@ class InputPage extends StatefulWidget {
 
 class _InputPageState extends State<InputPage> {
   Gender? selectedGender;
-  int initialHeight =
-      ((minSliderValue + maxSliderValue) / 2).floor();
+  int initialHeight = ((minSliderValue + maxSliderValue) / 2).floor();
   int initialWeight = 60;
   int initialAge = 20;
 
@@ -192,11 +192,27 @@ class _InputPageState extends State<InputPage> {
               ],
             ),
           ),
-          Container(
-            color: const Color(0xFFEB1555),
-            height: 80.0,
-            width: double.infinity,
-            margin: const EdgeInsets.only(top: 10.0),
+          GestureDetector(
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const ResultPage(),
+                ),
+              );
+            },
+            child: Container(
+              color: const Color(0xFFEB1555),
+              height: 80.0,
+              width: double.infinity,
+              margin: const EdgeInsets.only(top: 10.0),
+              child: const Center(
+                child: Text(
+                  'CALCULER',
+                  style: kLargeButtonTextStyle,
+                ),
+              ),
+            ),
           )
         ],
       ),
